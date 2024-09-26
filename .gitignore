@@ -1,0 +1,15 @@
+# IDE
+.idea/
+.vscode/
+
+!storage/
+storage/*
+!storage/tmp/
+
+# Generated dir
+node_modules
+
+# Environment
+.env
+
+yarn-error.log

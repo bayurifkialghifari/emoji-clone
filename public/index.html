@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT/fonts/static/woff2/SUIT.css">
+<style>
+    * {
+        font-family: 'SUIT', sans-serif';
+    }
+</style>
+<div id="emojis">
+GGWP
+</div>
+<script type="module">
+    import * as cheerio from 'https://cdn.jsdelivr.net/npm/cheerio@1.0.0/+esm'
+
+    fetch('http://localhost:8080/https://snskeyboard.com/emoticon/?lang=en#emoticon').then(res => res.text()).then(async (body) => {
+        const $ = await cheerio.load(body)
+        const tags = []
+        const emojis = []
+        $('.pkg_pre_itemsContainer').find('div').each((index, element) => {
+            if ($(element).attr('id')) {
+                tags.push($(element).attr('id'))
+            }
+        })
+
+        $('.box-C').find('div.data > pre').each((index, element) => {
+            emojis.push($(element).text())
+        })
+
+        document.getElementById('emojis').innerHTML = emojis.join(' ')
+    })
+</script>
